@@ -1,0 +1,497 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap");
+
+:root {
+  color-scheme: light;
+  --ink: #1b2b35;
+  --muted: #64737b;
+  --yellow: #ffc907;
+  --blue: #20a8d1;
+  --paper: #fffdf8;
+  --line: #e9e7df;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-width: 320px;
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "DM Sans", sans-serif;
+}
+
+button {
+  font: inherit;
+}
+
+.game-shell {
+  width: min(100% - 40px, 760px);
+  margin: 0 auto;
+  padding: 26px 0 30px;
+}
+
+.topbar,
+.brand,
+.game-controls,
+.button-row,
+.footer-note {
+  display: flex;
+  align-items: center;
+}
+
+.topbar {
+  justify-content: space-between;
+  min-height: 36px;
+}
+
+.brand {
+  gap: 9px;
+  color: var(--ink);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  text-decoration: none;
+}
+
+.brand-mark {
+  display: grid;
+  width: 21px;
+  height: 21px;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--yellow);
+  color: var(--yellow);
+  font-size: 0;
+}
+
+.brand-mark::after {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--ink);
+  content: "";
+}
+
+.game-label {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.intro {
+  padding: 33px 0 22px;
+  text-align: center;
+}
+
+.eyebrow,
+.stat-label,
+.message-kicker {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+}
+
+.eyebrow {
+  margin: 0 0 8px;
+  color: #947400;
+}
+
+h1 {
+  margin: 0;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: clamp(36px, 7vw, 52px);
+  letter-spacing: -0.075em;
+  line-height: 1;
+}
+
+h1 span {
+  color: #d29d00;
+}
+
+.description {
+  max-width: 440px;
+  margin: 12px auto 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.game-card {
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 15px;
+  background: #fff;
+  box-shadow:
+    0 2px 0 rgb(255 255 255 / 90%) inset,
+    0 5px 0 #e1dfd7,
+    0 17px 30px rgb(27 43 53 / 10%),
+    0 32px 55px rgb(27 43 53 / 7%);
+}
+
+.scoreboard {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  min-height: 67px;
+  border-bottom: 1px solid var(--line);
+}
+
+.stat {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+}
+
+.stat + .stat {
+  border-left: 1px solid var(--line);
+}
+
+.stat-label {
+  color: var(--muted);
+  font-size: 9px;
+}
+
+.stat-value {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.05em;
+  line-height: 1;
+}
+
+.stat-timer .stat-value {
+  color: #9e7800;
+}
+
+.seconds {
+  margin-left: 2px;
+  font-family: "DM Sans", sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.playfield {
+  position: relative;
+  height: clamp(280px, 54vw, 370px);
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 50% 112%, rgb(32 168 209 / 15%), transparent 48%),
+    linear-gradient(145deg, rgb(255 255 255 / 80%), transparent 42%),
+    linear-gradient(180deg, #f8fcfd 0%, #eff9fa 100%);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 90%),
+    inset 0 -18px 30px rgb(32 168 209 / 5%);
+  touch-action: none;
+  user-select: none;
+}
+
+.sun {
+  position: absolute;
+  top: 28px;
+  right: 12%;
+  width: 42px;
+  height: 42px;
+  border: 10px solid rgb(255 201 7 / 22%);
+  border-radius: 50%;
+  background: var(--yellow);
+  box-shadow: 0 0 0 9px rgb(255 201 7 / 8%);
+}
+
+.horizon {
+  position: absolute;
+  right: -5%;
+  bottom: 0;
+  left: -5%;
+  height: 25%;
+  border-radius: 50% 50% 0 0 / 25% 25% 0 0;
+  background: linear-gradient(180deg, rgb(32 168 209 / 6%), rgb(32 168 209 / 11%));
+}
+
+.bucket {
+  position: absolute;
+  z-index: 2;
+  left: 50%;
+  top: 86%;
+  width: 65px;
+  height: 48px;
+  overflow: hidden;
+  border: 4px solid #244651;
+  border-top: 6px solid #244651;
+  border-radius: 4px 4px 17px 17px;
+  background: #fff;
+  box-shadow:
+    inset 0 3px 0 rgb(255 255 255 / 90%),
+    inset -8px 0 12px rgb(27 43 53 / 8%),
+    0 5px 0 #18343e,
+    0 10px 15px rgb(27 43 53 / 22%);
+  cursor: grab;
+  touch-action: none;
+  transform: translate(-50%, -50%) perspective(100px) rotateX(-4deg);
+}
+
+.bucket.is-dragging {
+  cursor: grabbing;
+}
+
+.bucket:focus-visible {
+  outline: 3px solid #1b2b35;
+  outline-offset: 4px;
+}
+
+.bucket::before {
+  position: absolute;
+  top: -15px;
+  left: 8px;
+  width: 41px;
+  height: 24px;
+  border: 3px solid #244651;
+  border-bottom: 0;
+  border-radius: 28px 28px 0 0;
+  content: "";
+}
+
+.bucket-water {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 10px;
+  background: var(--blue);
+}
+
+.drop {
+  position: absolute;
+  z-index: 1;
+  width: 22px;
+  height: 28px;
+  border-radius: 70% 30% 65% 35% / 65% 30% 70% 35%;
+  background: var(--blue);
+  box-shadow:
+    inset -4px -3px 0 rgb(0 105 145 / 13%),
+    0 3px 0 #1286aa,
+    0 7px 12px rgb(32 168 209 / 24%);
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.drop::after {
+  position: absolute;
+  top: 6px;
+  left: 5px;
+  width: 4px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgb(255 255 255 / 55%);
+  content: "";
+}
+
+.drop-obstacle {
+  border-radius: 50% 50% 48% 52%;
+  background: #79513b;
+  box-shadow: inset -4px -3px 0 rgb(45 27 17 / 18%), 0 3px 8px rgb(65 39 22 / 20%);
+}
+
+.drop-obstacle::after {
+  background: rgb(255 255 255 / 35%);
+}
+
+.confetti-layer {
+  position: absolute;
+  z-index: 4;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.confetti-piece {
+  position: absolute;
+  top: -12px;
+  left: var(--confetti-x);
+  width: 8px;
+  height: 13px;
+  border-radius: 2px;
+  background: var(--confetti-color);
+  animation: confetti-fall 2.4s var(--confetti-delay) ease-in forwards;
+}
+
+@keyframes confetti-fall {
+  to {
+    transform: translate3d(22px, 410px, 0) rotate(var(--confetti-turn));
+    opacity: 0.15;
+  }
+}
+
+.game-message {
+  position: absolute;
+  z-index: 3;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 20px;
+  background: rgb(248 252 253 / 89%);
+  text-align: center;
+}
+
+.game-message.is-hidden {
+  display: none;
+}
+
+.message-kicker {
+  color: #947400;
+}
+
+.message-title {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: clamp(22px, 5vw, 29px);
+  font-weight: 700;
+  letter-spacing: -0.05em;
+}
+
+.button {
+  min-height: 40px;
+  padding: 0 16px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 700;
+  transition: background 120ms ease, transform 120ms ease;
+}
+
+.button:active {
+  transform: translateY(1px);
+}
+
+.button:focus-visible {
+  outline: 3px solid rgb(32 168 209 / 35%);
+  outline-offset: 2px;
+}
+
+.button-primary {
+  margin-top: 5px;
+  background: var(--yellow);
+  color: var(--ink);
+}
+
+.button-primary:hover {
+  background: #f0bc00;
+}
+
+.button-secondary {
+  border-color: var(--line);
+  background: #fff;
+  color: var(--ink);
+}
+
+.button-secondary:hover {
+  background: #f7f6f1;
+}
+
+.game-controls {
+  min-height: 62px;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 16px;
+  border-top: 1px solid var(--line);
+}
+
+.hint {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin: 0;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.keyboard-hint {
+  color: #849097;
+}
+
+.button-row {
+  gap: 6px;
+}
+
+.reset-button {
+  min-height: 36px;
+  padding: 0 12px;
+  font-size: 11px;
+}
+
+.footer-note {
+  justify-content: center;
+  gap: 8px;
+  margin: 17px 0 0;
+  color: var(--muted);
+  text-align: center;
+}
+
+.footer-drop {
+  color: var(--yellow);
+  font-size: 10px;
+}
+
+.footer-note p {
+  margin: 0;
+  font-size: 11px;
+}
+
+.footer-note strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+@media (max-width: 560px) {
+  .game-shell {
+    width: min(100% - 24px, 760px);
+    padding-top: 17px;
+  }
+
+  .game-label {
+    font-size: 10px;
+  }
+
+  .intro {
+    padding-top: 27px;
+  }
+
+  .description {
+    max-width: 340px;
+    font-size: 13px;
+  }
+
+  .scoreboard {
+    min-height: 60px;
+  }
+
+  .stat {
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .stat-value {
+    font-size: 20px;
+  }
+
+  .game-controls {
+    min-height: 58px;
+    padding: 9px 10px;
+  }
+
+  .reset-button {
+    padding: 0 9px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}

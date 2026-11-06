@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#fffdf8">
+    <title>Drop by Drop | Charity: water game</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="game.js" defer></script>
+  </head>
+  <body>
+    <main class="game-shell">
+      <header class="topbar">
+        <a class="brand" href="#" aria-label="Drop by Drop home">
+          <span class="brand-mark" aria-hidden="true">●</span>
+          <span>charity: water</span>
+        </a>
+        <span class="game-label">A little game for a big cause</span>
+      </header>
+
+      <section class="intro" aria-labelledby="game-title">
+        <p class="eyebrow">EVERY DROP COUNTS</p>
+        <h1 id="game-title">Drop by <span>drop.</span></h1>
+        <p class="description">Drag your bucket anywhere in the playfield, catch clean drops, and dodge dirty water!</p>
+      </section>
+
+      <section class="game-card" aria-label="Water drop catching game">
+        <div class="scoreboard" aria-label="Game stats">
+          <div class="stat">
+            <span class="stat-label">SCORE</span>
+            <span class="stat-value" id="score">0</span>
+          </div>
+          <div class="stat stat-timer">
+            <span class="stat-label">TIME</span>
+            <span class="stat-value"><span id="timer">30</span><span class="seconds">s</span></span>
+          </div>
+          <div class="stat">
+            <span class="stat-label">MISSED</span>
+            <span class="stat-value" id="missed">0</span>
+          </div>
+        </div>
+
+        <div class="playfield" id="playfield" aria-label="Game area. Drag the bucket to catch falling water drops.">
+          <div class="sun" aria-hidden="true"></div>
+          <div class="horizon" aria-hidden="true"></div>
+          <div class="bucket" id="bucket" role="img" aria-label="Water bucket. Drag to move it, or focus and use the arrow keys or W A S D." tabindex="0">
+            <span class="bucket-water"></span>
+          </div>
+          <div class="game-message" id="game-message" role="status" aria-live="polite">
+            <span class="message-kicker">READY WHEN YOU ARE</span>
+            <span class="message-title">Catch every drop.</span>
+          </div>
+        </div>
+
+        <div class="game-controls">
+          <p class="hint">Drag anywhere <span class="keyboard-hint">· brown drops cost 30 points · arrows / WASD</span></p>
+          <div class="button-row">
+            <button class="button button-primary" id="start-button" type="button">Start game <span aria-hidden="true">→</span></button>
+            <button class="button button-secondary reset-button" id="reset-button" type="button">Reset game</button>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer-note">
+        <span class="footer-drop" aria-hidden="true">●</span>
+        <p>Access to clean water changes everything. <strong>Learn more at charitywater.org</strong></p>
+      </footer>
+    </main>
+  </body>
+</html>
